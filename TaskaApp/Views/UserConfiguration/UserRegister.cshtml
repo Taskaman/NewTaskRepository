@@ -1,0 +1,239 @@
+﻿@model Taska_DomainModel.UserConfiguration.UserRegister
+@{
+    ViewBag.Title = "UserRegister";
+}
+
+@{
+    Html.EnableClientValidation();
+    Html.EnableUnobtrusiveJavaScript();
+}
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/css/Site.css" rel="stylesheet" />
+    <link href="~/Content/css/UserRegister.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.6.0.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Content/Script/popper.min.js"></script>
+
+    <scripts src="https://kit.fontawesome.com/a076d05399.js"></scripts>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <title>User Register</title>
+</head>
+<body>
+
+    <div class="wrapper">
+        <div class="form-left">
+            <div class="i_mg">
+                <img src="https://bootstrapious.com/i/snippets/sn-registeration/illustration.svg" @*<img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp"*@
+                     class="img-fluid" alt="Sample image">
+            </div>
+        </div>
+        <div class="form-right">
+            <div class="formdata">
+
+                <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">User Register</p>
+
+                @using (Html.BeginForm("User_Register", "UserConfiguration", FormMethod.Post))
+                {
+
+                    <div class="d-flex flex-row align-items-center mb-4">
+                        <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                        <div class="form-outline flex-fill mb-0">
+                            @Html.LabelFor(x => x.Username, new { @class = "form-label" })
+                            @Html.TextBoxFor(Login => Login.Username, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(login => login.Username, "", new { @class = "validation_error" })
+                        </div>
+                    </div>
+
+                    <div class="d-flex flex-row align-items-center mb-4">
+                        <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                        <div class="form-outline flex-fill mb-0">
+                            @Html.LabelFor(login => login.EmailAddress, new { @class = "form-label" })
+                            @Html.TextBoxFor(login => login.EmailAddress, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(login => login.EmailAddress,  "", new { @class = "validation_error" })
+                        </div>
+                    </div>
+
+                    <div class="d-flex flex-row align-items-center mb-4">
+                        <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                        <div class="form-outline flex-fill mb-0">
+                            @Html.LabelFor(x => x.PhoneNumber, new { @class = "form-label" })
+                            @Html.TextBoxFor(login => login.PhoneNumber, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(login => login.PhoneNumber, "", new { @class = "validation_error" })
+                        </div>
+                    </div>
+
+                    <div class="d-flex flex-row align-items-center mb-4">
+                        <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
+                        <div class="form-outline flex-fill mb-0">
+                            @Html.LabelFor(x => x.password, new { @class = "form-label" })
+                            @Html.TextBoxFor(login => login.password, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(login => login.password, "", new { @class = "validation_error" })
+                        </div>
+                    </div>
+
+                    <div class="d-flex flex-row align-items-center mb-4">
+                        <i class="fas fa-key fa-lg me-3 fa-fw"></i>
+                        <div class="form-outline flex-fill mb-0">
+                            @Html.LabelFor(x => x.isProjectManager, new { @class = "form-label" })
+                            @Html.CheckBoxFor(login => login.isProjectManager, new { @class = "form-check-input me-2" })
+                            @Html.ValidationMessageFor(login => login.isProjectManager, "", new { @class = "validation_error" })
+                        </div>
+
+                        <div class="form-outline flex-fill mb-0">
+                            @Html.LabelFor(x => x.IsteamMember, new { @class = "form-label" })
+                            @Html.CheckBoxFor(login => login.IsteamMember, new { @class = "form-check-input me-2" })
+                            @Html.ValidationMessageFor(login => login.IsteamMember, "", new { @class = "validation_error" })
+                        </div>
+                    </div>
+
+                    <div class="form-check d-flex justify-content-center mb-5">
+                        <label class="form-check-label" for="form2Example3">
+                            Have Already Logged In ? <a href="https://localhost:44316/UserConfiguration/Login">login here</a>
+                        </label>
+                    </div>
+
+                    <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                        <input type="submit" class="btn btn-primary btn-lg" id="btnsubmit" value="Register" />
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+<script>
+
+    $(document).on('click', 'input[type="checkbox"]', function () {
+        $('input[type="checkbox"]').not(this).prop('checked', false);
+    });
+    @if(ViewBag.registmesaage!=null)
+    {
+        <text>alert("Registered Successfully !");</text>
+    }
+    //$(document).ready(function () {
+    //    $('#manager').on('change', function () {
+    //        $('#teammember').not(this).prop('checked', false);
+    //    });
+
+    //    $('#teammember').on('change', function () {
+    //        $('#manager').not(this).prop('checked', false);
+    //    });
+    //    $("#btnsubmit").click(function () {
+    //        register.userregister()
+    //    });
+
+    //});
+
+    //var register =
+    //{
+    //    userregister: function () {
+    //        var valid = register.validation();
+    //        var data = {};
+    //        var role = false;
+    //        if (valid) {
+    //            data.Username = $("#username").val();
+    //            data.EmailAddress = $("#email").val();
+    //            data.PhoneNumber = $("#phno").val();
+    //            data.password = $("#Password").val();
+    //            if ($("#manager").is(':checked')) {
+    //                role = true
+    //            }
+    //            data.isProjectManager = role;
+
+    //            var jsondata = JSON.stringify(data);
+    //            console.log(data)
+    //            console.log(jsondata);
+
+    //            $.ajax(
+    //                {
+    //                    type: "POST",
+    //                    crossOrigin: true,
+    //                    url: "https://localhost:44316/UserConfiguration/User_Register",
+    //                    data: jsondata,
+    //                    contentType: "application/json",
+    //                    success: function (result) {
+    //                        console.log(result);
+    //                        swal({
+    //                            title: "Success!",
+    //                            text: result,
+    //                            icon: "success",
+    //                            buttons: false
+    //                        });
+
+    //                    },
+    //                    error: function (result) {
+    //                        console.log(result);
+    //                        swal({
+    //                            title: "Success!",
+    //                            text: 'Registered Failed',
+    //                            icon: "success",
+    //                            buttons: false
+    //                        });
+
+    //                    }
+    //                });
+    //        }
+    //    },
+
+    //    validation: function () {
+    //        var isValid = true;
+    //        var Username = $("#username").val();
+    //        var PhoneNumber = $("#phno").val();
+    //        var emailid = $("#email").val();
+    //        var password = $("#Password").val();
+
+    //        if (emailid == null || emailid == "" || password == null || password == "" || PhoneNumber == null || PhoneNumber == "" || Username == null || Username == "") {
+    //            swal({
+    //                title: "Error!",
+    //                text: "Enter Credentials to Proceed",
+    //                icon: "warning",
+    //                buttons: false
+    //            });
+    //            isValid = false;
+
+    //        }
+    //        else if (register.IsValidEmail(emailid) == false) {
+    //            swal({
+    //                title: "Error!",
+    //                text: "Invalid Email address",
+    //                icon: "warning",
+    //                buttons: false
+    //            });
+    //            isValid = false;
+
+    //        }
+    //        else if ($("#manager").is(':checked') == false && $("#teammember").is(':checked') == false) {
+    //            swal({
+    //                title: "Error!",
+    //                text: "Please select your role",
+    //                icon: "warning",
+    //                buttons: false,
+
+    //            });
+    //            isValid = false;
+    //        }
+    //        return isValid;
+
+    //    },
+
+    //    IsValidEmail: function (elementValue) {
+    //        var emailPattern = /\S+@@\S+\.\S+/;
+
+    //        return emailPattern.test(elementValue);
+
+    //    },
+
+    //}
+</script>
